@@ -1,0 +1,3 @@
+include ':tmw-aspectj'
+include ':app'
+rootProject.name = "SingleApp"

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="30dp">
+
+    <ImageView
+        android:id="@+id/tv_hello_world"
+        android:layout_width="702px"
+        android:layout_height="168px"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp" />
+
+    <ImageView
+        android:id="@+id/tv_hello_world2"
+        android:layout_width="702px"
+        android:layout_height="168px"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp" />
+
+    <ImageView
+        android:id="@+id/tv_hello_world3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp" />
+
+    <ImageView
+        android:id="@+id/tv_hello_world4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp" />
+
+</LinearLayout>

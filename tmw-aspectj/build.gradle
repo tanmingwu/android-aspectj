@@ -1,0 +1,38 @@
+apply plugin: 'groovy'
+apply plugin: 'java-gradle-plugin'
+apply plugin: 'maven'
+
+group = 'com.tmw.plugin'
+version = '1.0.0'
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: uri('../repo'))
+        }
+    }
+}
+
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
+    implementation 'com.android.tools.build:gradle:4.1.1'
+    implementation 'org.aspectj:aspectjtools:1.9.5'
+    implementation 'org.aspectj:aspectjrt:1.9.5'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir "src/main/java"
+        }
+
+        resources {
+            srcDir 'src/main/resources'
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
