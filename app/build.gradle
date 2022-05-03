@@ -3,12 +3,11 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'com.tmw.aspectj'
-//    id 'android-aspectjx'
 }
 
 aspectj {
     enable true
-    include "androidx.appcompat.app"
+    include "androidx.appcompat"
 }
 
 android {
