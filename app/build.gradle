@@ -7,6 +7,7 @@ plugins {
 
 aspectj {
     enable true
+//    exclude "kotlin"
     include "androidx.appcompat"
 }
 

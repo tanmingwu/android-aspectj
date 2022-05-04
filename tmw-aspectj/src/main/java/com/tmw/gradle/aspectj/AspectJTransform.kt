@@ -25,7 +25,6 @@ class AspectJTransform(project: Project) : BaseTransform() {
 
     private var mOutput: TransformOutputProvider? = null
     private val classpathFiles: MutableList<File> = ArrayList()
-    private val inPathFiles: MutableList<File> = ArrayList()
     private val aspectjFiles: MutableList<File> = ArrayList()
     private val extension: AspectJExtension = project.getExtension()
     private val appExtension: AppExtension = project.getExtension()
@@ -53,7 +52,6 @@ class AspectJTransform(project: Project) : BaseTransform() {
                     val task = DirectTask().setD(output.absolutePath)
                         .setInPath(directoryInput.file.absolutePath)
                     TaskManager.registerTask(task)
-//                    FileUtils.copyDirectory(directoryInput.file, output)
                 }
             }
         }
@@ -72,21 +70,27 @@ class AspectJTransform(project: Project) : BaseTransform() {
                 }
             }
         }
+
         jarInputs.forEach { jarInput ->
             if (extension.isExcludeAllJar) {
                 copyJar(jarInput, outputProvider)
-            } else if (extension.includes.isEmpty()) {
+                return@forEach //效果同continue
+            }
+
+            if (extension.includes.isEmpty() && extension.excludes.isEmpty()) {
+                registerJarTask(jarInput, outputProvider)
+                return@forEach
+            }
+
+            if (extension.includes.isEmpty()) {
                 if (FilterUtil.isExclude(jarInput, extension.excludes)) {
                     copyJar(jarInput, outputProvider)
                 } else {
-                    inPathFiles.add(jarInput.file)
+                    registerJarTask(jarInput, outputProvider)
                 }
             } else {
                 if (FilterUtil.isInclude(jarInput, extension.includes)) {
-                    val task = JarTask().setInJars(jarInput.file.absolutePath)
-                        .setOutJar(getOutput(jarInput, outputProvider).absolutePath)
-                        .setAspectPath(aspectjPath)
-                    TaskManager.registerTask(task)
+                    registerJarTask(jarInput, outputProvider)
                 } else {
                     copyJar(jarInput, outputProvider)
                 }
@@ -105,6 +109,12 @@ class AspectJTransform(project: Project) : BaseTransform() {
         TaskManager.release()
     }
 
+    private fun registerJarTask(jarInput: JarInput, outputProvider: TransformOutputProvider) {
+        val task = JarTask().setInJars(jarInput.file.absolutePath)
+            .setOutJar(getOutput(jarInput, outputProvider).absolutePath)
+            .setAspectPath(aspectjPath)
+        TaskManager.registerTask(task)
+    }
 
     private fun copyJar(jarInput: JarInput, outputProvider: TransformOutputProvider) {
         val output = getOutput(jarInput, outputProvider)

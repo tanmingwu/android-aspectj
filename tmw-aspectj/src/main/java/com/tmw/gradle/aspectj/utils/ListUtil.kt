@@ -7,7 +7,6 @@ package com.tmw.gradle.aspectj.utils
 object ListUtil {
 
     fun contain(tag: String, values: List<String>): Boolean {
-        println("class = $tag")
         val result = values.map {
             it.replace(".", "/")
         }.firstOrNull {

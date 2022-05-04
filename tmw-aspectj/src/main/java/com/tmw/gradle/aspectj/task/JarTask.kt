@@ -20,7 +20,6 @@ class JarTask : BaseTask() {
     }
 
     override fun execute() {
-        System.err.println("execute = $injars")
         val args = arrayOf(
             "-showWeaveInfo",
             "-inpath", injars,

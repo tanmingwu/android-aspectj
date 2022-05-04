@@ -65,13 +65,4 @@ object FilterUtil {
         }
         return first
     }
-
-    fun checkAspectPath(jarInput: JarInput): Boolean {
-        val firstClass = getFirstClass(jarInput)
-        firstClass ?: return false
-        if (firstClass.name.contains("com/example/baselibrary")) {
-            return true
-        }
-        return false
-    }
 }
