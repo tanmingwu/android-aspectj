@@ -1,27 +1,37 @@
 # android-aspectj
 A plugin with aspectj for android projects
 
-一款Android Aspectj的配置库，可以简化配置流程，支持第三方jar包，有很好的的兼容性
+一款用于android项目的aspectj配置库，可以简化配置流程，支持第三方jar包以及kotlin代码。有良好的的兼容性。
 
-由于没有上传maven仓库，所以需要自己clone下来引入自己本地工程。整个插件是用kotlin开发的
+使用方式如下 (注意gradle最低支持6.5版本，4.1.1)：
 
-使用方式如下：
+1、在项目的根目录下的build.gradle文件下加入jitpack maven地址
 
-1、将tmw-aspectj整个目录拷贝到工程下，并且编译通过，执行uploadArchives task就能在部署在repo下了
+```groovy
+allprojects {
+    repositories {
+        //....
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
 
-2、在项目的根目录下的build.gradle文件下加入本地maven仓库地址
+2、项目的根目录下的build.gradle文件得dependencies下加入依赖
 
-3、项目的根目录下的build.gradle文件得dependencies下加入
-
-```kotlin
+```groovy
     dependencies {
-        classpath("com.tmw.plugin:tmw-aspectj:1.1.0")
+        // ... 
+        classpath 'com.github.tanmingwu:android-aspectj:1.0.0'
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
     }
 ```
 
 4、在App目录下的build.gradle文件加入plugin
 
-```kotlin
+```groovy
+apply plugin: 'com.tmw.aspectj'
+//或者
 plugins {
     id("com.tmw.aspectj")
 }
