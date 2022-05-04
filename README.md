@@ -1,4 +1,4 @@
-# AndroidAspectj
+# android-aspectj
 A plugin with aspectj for android projects
 
 一款Android Aspectj的配置库，可以简化配置流程，支持第三方jar包，有很好的的兼容性
