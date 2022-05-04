@@ -1,6 +1,7 @@
 # AndroidAspectj
 A plugin with aspectj for android projects
-一款Android Aspectj的配置库，可以将配置流程，支持第三方jar包
+
+一款Android Aspectj的配置库，可以简化配置流程，支持第三方jar包，有很好的的兼容性
 
 由于没有上传maven仓库，所以需要自己clone下来引入自己本地工程。整个插件是用kotlin开发的
 
